@@ -8,6 +8,13 @@ body > table{
 .container{
     display:flex;
 }
+.parent-container{
+    display:flex;
+    flex-direction:row; 
+}
+.left, .right{
+    max-width:50%;
+}
 label{
     padding:0 5px;
 }

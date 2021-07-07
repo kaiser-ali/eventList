@@ -37,8 +37,17 @@ function insertNewEvent(data) {
     cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.desc;
 
-    cell5 = newRow.insertCell(4);
-    cell5.innerHTML = data.photo;
+    if(e.target.files.length > 0){
+        var src = URL.createObjectURL(e.target.files[0]);
+        var preview = document.getElementById("getPhoto");
+        preview.src = src;
+
+        cell5 = newRow.insertCell(4);
+        cell5.innerHTML = `<img src="${src}" id="getPhoto"  alt="image" />`;
+    }
+ 
+
+  
 
     cell5 = newRow.insertCell(5);
     cell5.innerHTML = `<a onClick="onEdit(this)" target="_self">Edit</a>
