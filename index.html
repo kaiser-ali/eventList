@@ -2,6 +2,11 @@
 <html>
 
 <head>
+    <script src="/__/firebase/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+    <script src="config.js">
+
+    </script>
     <title>
         Event List
     </title>
@@ -32,7 +37,8 @@
                         </div>
                         <div class="container file">
                             <label>Upload Photo</label>
-                            <input type="file" name="photo" id="photo">
+                            <input type="file" name="photo"
+                             id="photo" accept="image/*">
                         </div>
                         <div  class="form-action-buttons">
                             <input type="submit" value="Submit">
@@ -61,7 +67,7 @@
         </table>
     </div>
     <script src="index.js"></script>
- <!-- The core Firebase JS SDK is always required and must be listed first -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="/__/firebase/8.7.0/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use

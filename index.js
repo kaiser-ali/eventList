@@ -5,9 +5,11 @@ function onEventSubmit() {
         var eventData = readEventData();
         if (selectedRow == null)
             insertNewEvent(eventData);
+        
         else
-            updateEvent(eventData);
+        updateEvent(eventData);
         resetEvent();
+        
     }
 }
 
@@ -37,20 +39,25 @@ function insertNewEvent(data) {
     cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.desc;
 
-    if(e.target.files.length > 0){
-        var src = URL.createObjectURL(e.target.files[0]);
-        var preview = document.getElementById("getPhoto");
-        preview.src = src;
-
-        cell5 = newRow.insertCell(4);
-        cell5.innerHTML = `<img src="${src}" id="getPhoto"  alt="image" />`;
+    cell5 = newRow.insertCell(4);
+    var file = document.getElementById("photo").files;
+    if(file.length > 0){
+        var fileReader = new FileReader();
+        fileReader.onload = function(event){
+            document.getElementById("preview").
+            setAttribute("src",event.target.result);
+        }
+        fileReader.readAsDataURL(file[0]);
+        cell5.innerHTML = `<span class="imgContainer">
+        <img src="" id="preview"  alt="image" />
+        </span>`;
     }
+
+
+
  
-
-  
-
     cell5 = newRow.insertCell(5);
-    cell5.innerHTML = `<a onClick="onEdit(this)" target="_self">Edit</a>
+    cell5.innerHTML = `<a onClick="onEdit(this)" target="_blank">Edit</a>
                        <a onClick="onDelete(this)">Delete</a>`;
 }
 
@@ -98,3 +105,20 @@ function validate() {
     }
     return isValid;
 }
+
+// function previewMethod(){
+//     var file = document.getElementById("photo").files;
+//     if(file.length > 0){
+//         var fileReader = new FileReader();
+//         fileReader.onload = function(event){
+//             document.getElementById("preview").
+//             setAttribute("src",event.target.result);
+//         }
+//         fileReader.readAsDataURL(file[0]);
+//     }
+// } 
+
+var database = firebase.database();
+var ref = database.ref("records");
+
+ref.push(eventData);
